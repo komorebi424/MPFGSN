@@ -32,9 +32,7 @@ def load_model(model_dir, epoch=None):
         return None
 
 def MAPE(v, v_, axis=None):
-    mape = (np.abs(v_ - v) / (np.abs(v)+1e-5)).astype(np.float64)
-    mape = np.where(mape > 5, 5, mape)
-    return np.mean(mape, axis)
+    return np.mean(np.abs((v_ - v) / v), axis).astype(np.float64)
 
 def MAE(v, v_, axis=None):
     '''
